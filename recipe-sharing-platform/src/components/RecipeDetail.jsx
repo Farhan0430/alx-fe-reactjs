@@ -1,9 +1,15 @@
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import data from "../data.json";
 
 export default function RecipeDetail() {
   const { id } = useParams();
   const recipe = data.find((item) => item.id === parseInt(id));
+
+  useEffect(() => {
+
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!recipe) {
     return <div className="text-center mt-10">Recipe not found</div>;
