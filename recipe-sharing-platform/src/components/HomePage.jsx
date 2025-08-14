@@ -1,10 +1,18 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import data from "../data.json";
 
 export default function HomePage() {
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(() => {
+    // Simulating data fetch
+    setRecipes(data);
+  }, []);
+
   return (
     <div className="max-w-5xl mx-auto p-6 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-      {data.map((recipe) => (
+      {recipes.map((recipe) => (
         <Link
           key={recipe.id}
           to={`/recipe/${recipe.id}`}
