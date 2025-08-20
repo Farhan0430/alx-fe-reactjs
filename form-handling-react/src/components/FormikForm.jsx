@@ -19,7 +19,6 @@ export default function FormikForm() {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     console.log("Formik values:", values);
 
-    // Mock API call
     fetch("https://jsonplaceholder.typicode.com/posts", {
       method: "POST",
       body: JSON.stringify(values),
