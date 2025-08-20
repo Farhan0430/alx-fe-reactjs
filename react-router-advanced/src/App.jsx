@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import Profile from "./components/Profile.jsx";
-import Post from "./components/Post.jsx";
+import BlogPost from "./components/BlogPost.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/post/:id" element={<Post />} />
+        <Route path="/blog/:id" element={<BlogPost />} /> {/* updated path */}
       </Routes>
     </Router>
   );
