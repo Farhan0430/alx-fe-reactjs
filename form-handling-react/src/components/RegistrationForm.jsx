@@ -4,17 +4,30 @@ export default function RegistrationForm() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!username || !email || !password) {
-      setError("All fields are required.");
+    let newErrors = {};
+
+    if (!username) {
+      newErrors.username = "Username is required";
+    }
+    if (!email) {
+      newErrors.email = "Email is required";
+    }
+    if (!password) {
+      newErrors.password = "Password is required";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
-    setError("");
+    setErrors({});
+
     console.log("Form submitted:", { username, email, password });
 
     fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -33,8 +46,6 @@ export default function RegistrationForm() {
     >
       <h2 className="text-xl font-bold">User Registration (Controlled)</h2>
 
-      {error && <p className="text-red-500">{error}</p>}
-
       <div>
         <label className="block font-medium">Username</label>
         <input
@@ -44,6 +55,7 @@ export default function RegistrationForm() {
           onChange={(e) => setUsername(e.target.value)}
           className="w-full border px-2 py-1 rounded"
         />
+        {errors.username && <p className="text-red-500">{errors.username}</p>}
       </div>
 
       <div>
@@ -55,6 +67,7 @@ export default function RegistrationForm() {
           onChange={(e) => setEmail(e.target.value)}
           className="w-full border px-2 py-1 rounded"
         />
+        {errors.email && <p className="text-red-500">{errors.email}</p>}
       </div>
 
       <div>
@@ -66,6 +79,7 @@ export default function RegistrationForm() {
           onChange={(e) => setPassword(e.target.value)}
           className="w-full border px-2 py-1 rounded"
         />
+        {errors.password && <p className="text-red-500">{errors.password}</p>}
       </div>
 
       <button
